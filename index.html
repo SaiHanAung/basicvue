@@ -11,6 +11,9 @@
     <link href="./Material.css" rel="stylesheet">
     <script src="./vue.global.js"></script>
 
+    <!-- HIGHLIGHT JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <style>
         [v-cloak] {
             display: none;
@@ -38,7 +41,8 @@
                         <div class="mb-2">
                             <p class="text-muted m-0 mb-1">{{topic.head}}</p>
                             <span v-for="(list, i) in topic.path">
-                                <a href="javascript:void(0)" @click="openIframe(list, topic.head)" class="btn btn-light w-100 text-start d-flex" role="button">{{topic.list[i]}}</a>
+                                <a href="javascript:void(0)" @click="openIframe(list, topic.head)"
+                                    class="btn btn-light w-100 text-start d-flex" role="button">{{topic.list[i]}}</a>
                             </span>
                         </div>
                     </div>
@@ -57,86 +61,90 @@
             <div :class="['p-4', {'overflow-auto': viewMode != 'iframe'}]" id="content-placholder">
 
                 <div :class="{'d-none': viewMode == 'iframe'}">
-                    <h3>จากพี่ซายเอง นี่เป็นตัวอย่าง Vue แบบพื้นฐาน เลือกดูตัวอย่างโค้ดด้านซ้ายมือได้เลย <span>&#128521;</span></h3>
-                    <hr>
-                    <p>CDN ที่ใช้ในตัวอย่าง</p>
-                    <div class="bg-secondary bg-opacity-10 p-3 rounded-1">
-                        <p class="m-0">
-                            &lt;!-- ICON --&gt;
-                            &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"&gt;
-                        </p>
-                        <p class="m-0">
-                            &lt;!-- CSS --&gt;
-                            &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
-                        </p>
-                        <p class="m-0">
-                            &lt;!-- JS --&gt;
-                            &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
-                        </p>
-                        <p class="m-0">
-                            &lt;!-- VUE --&gt;
-                            &lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-                        </p>
-                    </div>
-                    <hr>
+                    <h5>จากพี่ซายเอง นี่เป็นตัวอย่าง Vue แบบพื้นฐาน เลือกดูตัวอย่างโค้ดด้านซ้ายมือได้เลย
+                        <span>&#128521;</span>
+                    </h5>
+                    <pre class="m-0">
+                        <code>
+&lt;!-- CDN ที่ใช้ในตัวอย่าง --&gt; 
+&lt;!-- ICON --&gt; 
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"&gt;
+
+&lt;!-- CSS --&gt; 
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- JS --&gt; 
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- VUE --&gt; 
+&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+                        </code>
+                    </pre>
                     <p>
-                        ในตัวอย่างนี้จะเขียนบนไฟล์นามสกุล .php ซึ่งตาม Syntax ของการนำตัวแปรมาใช้บน HTML
-                        เราจะใช้ <span v-text="mustache" class="bg-secondary bg-opacity-25 p-1 rounded-1"></span>
-                        (Mustache) ครอบตัวแปรที่จะนำมาแสดง แต่บน Laravel เราจะเขียนบนไฟล์นามสกุล .blade.php ซึ่งต้องเพิ่ม @ นำหน้า Mustache
+                        ในตัวอย่างนี้จะเขียนบนไฟล์นามสกุล .php ซึ่งตาม Syntax ของการนำตัวแปรมาใช้บน HTML เราจะใช้ <span
+                            v-text="mustache" class="bg-secondary bg-opacity-25 p-1 rounded-1"></span> (Mustache)
+                        ครอบตัวแปรที่จะนำมาแสดง แต่บน Laravel เราจะเขียนบนไฟล์นามสกุล
+                        .blade.php ซึ่งต้องเพิ่ม @ นำหน้า Mustache
                         <label class="bg-secondary bg-opacity-25 p-1 rounded-1">@<span v-text="mustache"></span></label>
-                        เพื่อให้ใช้งาน Syntax ตัวนี้ได้ เพราะ Laravel เองก็ใช้ <span v-text="mustache" class="bg-secondary bg-opacity-25 p-1 rounded-1"></span>
-                        อยู่แล้ว มันเลยใช้ซ้ำกันไม่ได้
+                        เพื่อให้ใช้งาน Syntax ตัวนี้ได้ เพราะ Laravel เองก็ใช้ <span v-text="mustache"
+                            class="bg-secondary bg-opacity-25 p-1 rounded-1"></span> อยู่แล้ว มันเลยใช้ซ้ำกันไม่ได้
                     </p>
                     <p>
-                        ตามโครงสร้างของตัวอย่างในการสร้าง Vue app เนื่องจากถูกอ้างอิงมาจาก CDN ไฟล์ จะเริ่มด้วยคำสั่ง 
-                        <span class="bg-secondary bg-opacity-25 p-1 rounded-1">Vue.createApp({}).mount('#ไอดีของ Element ที่จะให้ Vue แสดงผล')</span>
+                        ตามโครงสร้างของตัวอย่างในการสร้าง Vue app เนื่องจากถูกอ้างอิงมาจาก CDN ไฟล์ จะเริ่มด้วยคำสั่ง
+                        <span class="bg-secondary bg-opacity-25 p-1 rounded-1">Vue.createApp({}).mount('#ไอดีของ Element
+                            ที่จะให้ Vue แสดงผล')</span>
                     </p>
                     <p>
-                        แต่ด้วยเว็บไซต์ของเราจะอ้างอิงถึง Module ที่ถูกติดตั้งผ่าน npm จะใช้แค่ 
-                        <span class="bg-secondary bg-opacity-25 p-1 rounded-1">createApp({}).mount('#ไอดีของ Element ที่จะให้ Vue แสดงผล')</span> บนไฟล์นามสกุล .js
+                        แต่ด้วยเว็บไซต์ของเราจะอ้างอิงถึง Module ที่ถูกติดตั้งผ่าน npm จะใช้แค่
+                        <span class="bg-secondary bg-opacity-25 p-1 rounded-1">createApp({}).mount('#ไอดีของ Element
+                            ที่จะให้ Vue แสดงผล')</span> บนไฟล์นามสกุล .js
                     </p>
-                    <div class="bg-secondary bg-opacity-10 p-3 rounded-1">
-                        <p><u>โครงสร้าง Vue พื้นฐาน</u></p>
-                        <pre>
+                    <pre class="m-0">
+                        <code class="javascript">
+โครงสร้าง Vue พื้นฐาน
+
 Vue.createApp({
     data() {
         return {
-            now: new Date() <span class="text-success"><-- ตัวแปร ภายใน data() ที่ถูก return นี้จะสามารถนำไปใช้บน HTML หรือนำไปจัดการอะไรบางอย่างในฟังก์ชั่นภายใน methods ได้</span>
-                            <span class="text-success">-- สามารถกำหนดประเภทของข้อมูลได้ทุกรูปแบบไม่ว่าจะเป็น String, Object, Array หรือแม้แต่ Function ก็ได้เช่นกัน</span>
+            now: new Date() // ตัวแปร ภายใน data() ที่ถูก return นี้จะสามารถนำไปใช้บน HTML หรือนำไปจัดการอะไรบางอย่างในฟังก์ชั่นภายใน methods ได้
+                            // สามารถกำหนดประเภทของข้อมูลได้ทุกรูปแบบไม่ว่าจะเป็น String, Object, Array หรือแม้แต่ Function ก็ได้เช่นกัน
         }
     },          
     methods: {
-        thaiDate() { <span class="text-success"><-- thaiDate() คือชื่อฟังก์ชั่นภายใน Vue นี้</span>
+        thaiDate() { // thaiDate() คือชื่อฟังก์ชั่นภายใน Vue นี้
             const m = [
                 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
                 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
             ]
-            d = this.now <span class="text-success"><-- การอ้างอิงถึงตัวแปรที่ถูกกำหนดไว้ใน data() ให้ใช้ keyword (this) นำหน้าเสมอ</span>
-                         <span class="text-success">-- การอ้างอิงถึงฟังก์ชั่นอื่นภายใน Vue นี้ก็เช่นเดียวกันต้องใช้ this นำหน้าเสมอ</span>
+            d = this.now // การอ้างอิงถึงตัวแปรที่ถูกกำหนดไว้ใน data() ให้ใช้ keyword (this) นำหน้าเสมอ
+                         // การอ้างอิงถึงฟังก์ชั่นอื่นภายใน Vue นี้ก็เช่นเดียวกันต้องใช้ this นำหน้าเสมอ
             return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear() + 543}`
         }
     },
-    mounted() { <span class="text-success"><-- ตัวนี้จะเป็นการบังคับให้สิ่งที่อยู่ในนี้ทำงานทันทีหลังโหลดหน้าเว็บ</span>
-        <span class="text-success">//เรียกตัวแปรหรือฟังก์ชั่นอะไรบางอย่างมาทำอะไรบางอย่างในนี้</span>
+    mounted() { // ตัวนี้จะเป็นการบังคับให้สิ่งที่อยู่ในนี้ทำงานทันทีหลังโหลดหน้าเว็บ
+                // เรียกตัวแปรหรือฟังก์ชั่นอะไรบางอย่างมาทำอะไรบางอย่างในนี้
     },
-    computed() { <span class="text-success"><-- ใช้ในการดักจับการเปลี่ยนแปลงของข้อมูล แล้วแสดงผลข้อมูลตามเงื่อนไขที่เรากำหนดไว้ข้างใน</span>
-        <span class="text-success">//เรียกตัวแปรมาทำเงื่อนไขอะไรหรือตรวจสอบการเปลี่ยนแปลงอะไรบางอย่าง</span>
+    computed() { // ใช้ในการดักจับการเปลี่ยนแปลงของข้อมูล แล้วแสดงผลข้อมูลตามเงื่อนไขที่เรากำหนดไว้ข้างใน
+                //เรียกตัวแปรมาทำเงื่อนไขอะไรหรือตรวจสอบการเปลี่ยนแปลงอะไรบางอย่าง
     },
-    watch: { <span class="text-success"><-- ใช้ตรวจสอบในกรณีที่ข้อมูลมีการเปลี่ยนแปลงเสร็จแล้ว</span>
-        <span class="text-success">//เรียกค่าที่เราต้องการสังเกตดูเพื่อใช้ทำเงื่อนไขอะไรบางอย่าง</span>
+    watch: { // ใช้ตรวจสอบในกรณีที่ข้อมูลมีการเปลี่ยนแปลงเสร็จแล้ว
+            // เรียกค่าที่เราต้องการสังเกตดูเพื่อใช้ทำเงื่อนไขอะไรบางอย่าง
     }
-}).mount(<span class="text-success">#ไอดีของ Element ที่จะให้ Vue แสดงผล</span>)
-                        </pre>
-                    </div>
+}).mount(#ไอดีของ Element ที่จะให้ Vue แสดงผล)
+                        </code>
+                    </pre>
                 </div>
 
-                <iframe id="iframe-placeholder" :class="{ 'd-none': viewMode != 'iframe' }" class="w-100 h-100" src="" frameborder="0"></iframe>
+                <iframe id="iframe-placeholder" :class="{ 'd-none': viewMode != 'iframe' }" class="w-100 h-100" src=""
+                    frameborder="0"></iframe>
 
             </div>
         </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
+        hljs.highlightAll();
+
         const c = console.log.bind()
 
         function resizeViewport() {
@@ -163,26 +171,22 @@ Vue.createApp({
                     mustache: '{{ }}',
                     name: '',
                     topics: [{
-                            head: "chap 1",
-                            list: ["mustache", "data 1", "data 2", "methods", "computed", "event 1", "event 2", "event 3", "ref"],
-                            path: ["chap1/mustache.html", "chap1/data-1.html", "chap1/data-2.html", "chap1/methods.html", "chap1/computed.html", "chap1/event-1.html", "chap1/event-2.html", "chap1/event-3.html", "chap1/ref.html"],
-                        },
-                        {
-                            head: "chap 2",
-                            list: ["v-html", "v-show", "v-if", "v-if v-else", "v-if v-else-if", "v-for", "v-for templet", "v-bind 1", "v-bind 2"],
-                            path: ["chap2/v-html.html", "chap2/v-show.html", "chap2/v-if.html", "chap2/v-if-else.html", "chap2/v-if-elseif.html", "chap2/v-for.html", "chap2/v-for-template.html", "chap2/v-bind-1.html", "chap2/v-bind-2.html"],
-                        },
-                        {
-                            head: "chap 3",
-                            list: ["v-model", "v-bind", "text 1", "text 2", "checkbox", "switch", "radio", "radio 2", "button group", "select", "form validation"],
-                            path: ["chap3/v-model.html", "chap3/v-bind.html", "chap3/text-1.html", "chap3/text-2.html", "chap3/checkbox.html", "chap3/switch.html", "chap3/radio.html", "chap3/radio-2.html", "chap3/button-group.html", "chap3/select.html", "chap3/form-validation.html"],
-                        },
-                        {
-                            head: "chap 4",
-                            list: ["custom hr", "component options", "props", "custom event", "v-model 1", "v-model 2", "using module"],
-                            path: ["chap4/custom-hr.html", "chap4/component-options.html", "chap4/props.html", "chap4/custom-event.html", "chap4/v-model-1.html", "chap4/v-model-2.html", "chap4/using-module.html"],
-                        },
-                    ]
+                        head: "chap 1",
+                        list: ["mustache", "data 1", "data 2", "methods", "computed", "event 1", "event 2", "event 3", "ref"],
+                        path: ["chap1/mustache.html", "chap1/data-1.html", "chap1/data-2.html", "chap1/methods.html", "chap1/computed.html", "chap1/event-1.html", "chap1/event-2.html", "chap1/event-3.html", "chap1/ref.html"],
+                    }, {
+                        head: "chap 2",
+                        list: ["v-html", "v-show", "v-if", "v-if v-else", "v-if v-else-if", "v-for", "v-for templet", "v-bind 1", "v-bind 2"],
+                        path: ["chap2/v-html.html", "chap2/v-show.html", "chap2/v-if.html", "chap2/v-if-else.html", "chap2/v-if-elseif.html", "chap2/v-for.html", "chap2/v-for-template.html", "chap2/v-bind-1.html", "chap2/v-bind-2.html"],
+                    }, {
+                        head: "chap 3",
+                        list: ["v-model", "v-bind", "text 1", "text 2", "checkbox", "switch", "radio", "radio 2", "button group", "select", "form validation"],
+                        path: ["chap3/v-model.html", "chap3/v-bind.html", "chap3/text-1.html", "chap3/text-2.html", "chap3/checkbox.html", "chap3/switch.html", "chap3/radio.html", "chap3/radio-2.html", "chap3/button-group.html", "chap3/select.html", "chap3/form-validation.html"],
+                    }, {
+                        head: "chap 4",
+                        list: ["custom hr", "component options", "props", "custom event", "v-model 1", "v-model 2", "using module"],
+                        path: ["chap4/custom-hr.html", "chap4/component-options.html", "chap4/props.html", "chap4/custom-event.html", "chap4/v-model-1.html", "chap4/v-model-2.html", "chap4/using-module.html"],
+                    },]
                 }
             },
             methods: {
